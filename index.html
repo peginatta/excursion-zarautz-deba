@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es" style="color-scheme: light only;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Excursión Zarautz → Deba · 4º ESO</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sea: #1a6b8a;
+    --sea-dark: #0e4d66;
+    --sand: #f0e8d8;
+    --cliff: #3d6b4f;
+    --sunset: #e8834a;
+    --stone: #5c5147;
+    --cream: #faf7f0;
+    --ink: #1e1e1e;
+    --mist: #e4e0d7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    color-scheme: light only;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, var(--sea-dark) 0%, var(--sea) 40%, var(--cliff) 100%);
+    color: white;
+    padding: 3rem 1.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 40px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    margin-bottom: 0.25rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--sunset); }
+  .hero-sub {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    max-width: 500px;
+  }
+  .hero-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+  }
+  .badge {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 0 1.25rem; }
+  section { padding: 2rem 0; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--sea);
+    background: rgba(26,107,138,0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.6rem;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--sea-dark);
+  }
+
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--sea), var(--cliff), var(--sunset));
+    border-radius: 2px;
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--mist);
+  }
+  .tl-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .tl-dot {
+    position: absolute;
+    left: -2rem;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--sea);
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--sea);
+  }
+  .tl-item.highlight .tl-dot { background: var(--sunset); box-shadow: 0 0 0 2px var(--sunset); }
+  .tl-item.green .tl-dot { background: var(--cliff); box-shadow: 0 0 0 2px var(--cliff); }
+  .tl-time {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--sea);
+    margin-bottom: 0.15rem;
+  }
+  .tl-item.highlight .tl-time { color: var(--sunset); }
+  .tl-item.green .tl-time { color: var(--cliff); }
+  .tl-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  .tl-desc {
+    font-size: 0.88rem;
+    color: var(--stone);
+    line-height: 1.55;
+  }
+  .tl-tip {
+    margin-top: 0.5rem;
+    background: rgba(61,107,79,0.08);
+    border-left: 3px solid var(--cliff);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.82rem;
+    color: var(--cliff);
+  }
+
+  .weather-card {
+    background: white;
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 1rem;
+  }
+  .weather-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .weather-item { text-align: center; }
+  .weather-icon { font-size: 2rem; margin-bottom: 0.25rem; }
+  .weather-val { font-weight: 700; font-size: 1.1rem; }
+  .weather-label { font-size: 0.75rem; color: var(--stone); }
+  .weather-note {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: rgba(232,131,74,0.1);
+    border-radius: 8px;
+    font-size: 0.82rem;
+    color: var(--stone);
+    text-align: center;
+  }
+
+  .poi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  @media (max-width: 500px) { .poi-grid { grid-template-columns: 1fr; } }
+
+  .poi-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--sea);
+    transition: transform 0.2s;
+  }
+  .poi-card:hover { transform: translateY(-2px); }
+  .poi-card.nature { border-left-color: var(--cliff); }
+  .poi-card.town { border-left-color: var(--sunset); }
+  .poi-card .poi-emoji { font-size: 1.5rem; margin-bottom: 0.35rem; }
+  .poi-card .poi-name { font-weight: 600; font-size: 0.92rem; margin-bottom: 0.2rem; }
+  .poi-card .poi-desc { font-size: 0.8rem; color: var(--stone); line-height: 1.5; }
+
+  .info-box {
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    margin-bottom: 0.75rem;
+  }
+  .info-box h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .info-box p, .info-box li {
+    font-size: 0.88rem;
+    color: var(--stone);
+    line-height: 1.55;
+  }
+  .info-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .info-box ul li {
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .info-box ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--sea);
+    font-weight: 600;
+  }
+
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin: 1.25rem 0;
+  }
+  .stat {
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    padding: 0.75rem 0.5rem;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  }
+  .stat-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--sea-dark);
+  }
+  .stat-label {
+    font-size: 0.68rem;
+    color: var(--stone);
+    margin-top: 0.15rem;
+  }
+
+  .checklist {
+    columns: 2;
+    column-gap: 1rem;
+    list-style: none;
+    padding: 0;
+  }
+  @media (max-width: 500px) { .checklist { columns: 1; } }
+  .checklist li {
+    break-inside: avoid;
+    padding: 0.4rem 0 0.4rem 1.6rem;
+    position: relative;
+    font-size: 0.88rem;
+    color: var(--stone);
+  }
+  .checklist li::before {
+    content: '☐';
+    position: absolute;
+    left: 0;
+    font-size: 1rem;
+    color: var(--sea);
+  }
+
+  .day2-header {
+    background: linear-gradient(135deg, var(--cliff) 0%, var(--sea-dark) 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 14px;
+    margin-bottom: 1.25rem;
+  }
+  .day2-header h2 { color: white; margin-bottom: 0.25rem; }
+  .day2-header p { font-size: 0.9rem; opacity: 0.9; }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.75rem;
+    color: var(--stone);
+    border-top: 1px solid var(--mist);
+    margin-top: 1rem;
+  }
+
+  @media print {
+    .hero { padding: 1.5rem; }
+    .hero::after { display: none; }
+    body { font-size: 11pt; }
+    .poi-card:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-label">Excursión 4º ESO · septiembre 2026</div>
+    <h1>Pamplona → Zarautz → <span>Deba</span></h1>
+    <p class="hero-sub">Recorreremos el Camino del Norte por la costa vasca: acantilados de flysch, pueblos marineros, viñedos de txakolí y playas. Sábado y domingo.</p>
+    <div class="hero-badges">
+      <span class="badge">🥾 ~22 km a pie</span>
+      <span class="badge">🚗 1h 30min coche</span>
+      <span class="badge">🚆 Euskotren vuelta</span>
+      <span class="badge">⛪ Misa domingo</span>
+      <span class="badge">💰 10€ por persona</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- DATOS RUTA -->
+  <section>
+    <span class="section-tag">La ruta</span>
+    <h2>Zarautz → Deba por la costa</h2>
+    <p style="font-size:0.9rem; color:var(--stone); margin-bottom:0.75rem;">
+      Seguiremos una etapa del Camino de Santiago del Norte: pasaremos por Getaria, Zumaia y los espectaculares acantilados de flysch hasta llegar a Deba. Continuas subidas y bajadas con vistas increíbles al Cantábrico. Dificultad media, perfectamente apta para los chavales.
+    </p>
+
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="stat-val">22</div>
+        <div class="stat-label">kilómetros</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">5-6h</div>
+        <div class="stat-label">caminando</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">730m</div>
+        <div class="stat-label">desnivel acum.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">Media</div>
+        <div class="stat-label">dificultad</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIMA -->
+  <section>
+    <span class="section-tag">Clima esperado</span>
+    <h2>Septiembre en la costa vasca</h2>
+    <div class="weather-card">
+      <p style="font-size:0.88rem; color:var(--stone);">Previsión típica de mediados de septiembre en la costa guipuzcoana. Consulta <strong>AEMET</strong> o <strong>Euskalmet</strong> los días previos para datos exactos.</p>
+      <div class="weather-grid">
+        <div class="weather-item">
+          <div class="weather-icon">🌤️</div>
+          <div class="weather-val">16–22°C</div>
+          <div class="weather-label">Temperatura</div>
+        </div>
+        <div class="weather-item">
+          <div class="weather-icon">🌧️</div>
+          <div class="weather-val">44%</div>
+          <div class="weather-label">Prob. lluvia</div>
+        </div>
+        <div class="weather-item">
+          <div class="weather-icon">☀️</div>
+          <div class="weather-val">11h</div>
+          <div class="weather-label">Horas de sol</div>
+        </div>
+      </div>
+      <div class="weather-note">
+        ⚠️ Septiembre en la costa vasca puede cambiar rápido. Que lleven <strong>chubasquero obligatorio</strong> en la mochila aunque salga el sol.
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE SÁBADO -->
+  <section>
+    <span class="section-tag">Sábado — Plan del día</span>
+    <h2>De Pamplona a Deba paso a paso</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">08:00</div>
+        <div class="tl-title">Salida de Pamplona en coche</div>
+        <div class="tl-desc">Saldremos por la A-15 dirección Donostia y luego AP-8 hasta Zarautz. Aproximadamente 1 hora y 30 minutos, unos 100 km.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">09:30</div>
+        <div class="tl-title">Aparcar en Zarautz</div>
+        <div class="tl-desc">Aparcaremos en Zarautz cerca de la playa o de la estación de Euskotren. Los fines de semana suele haber sitio en las calles del centro.</div>
+      </div>
+
+      <div class="tl-item highlight">
+        <div class="tl-dot"></div>
+        <div class="tl-time">10:00</div>
+        <div class="tl-title">Inicio de la ruta: Zarautz</div>
+        <div class="tl-desc">Comenzaremos desde el casco histórico de Zarautz, subiendo por la antigua calzada que conecta con Getaria. Ascenso fuerte al principio con vistas espectaculares a la playa de Zarautz a nuestras espaldas.</div>
+      </div>
+
+      <div class="tl-item green">
+        <div class="tl-dot"></div>
+        <div class="tl-time">11:00</div>
+        <div class="tl-title">Getaria — Villa de Elcano</div>
+        <div class="tl-desc">Bajaremos a Getaria, pueblo marinero cuna de Juan Sebastián Elcano (el primero en dar la vuelta al mundo). Callejuelas empinadas, puerto pesquero y el famoso "ratón de Getaria" (islote unido al pueblo).</div>
+        <div class="tl-tip">🐭 Merece la pena ver el ratón de Getaria desde el puerto. ¡La silueta de la isla parece un ratón de verdad!</div>
+      </div>
+
+      <div class="tl-item green">
+        <div class="tl-dot"></div>
+        <div class="tl-time">11:45</div>
+        <div class="tl-title">Viñedos de txakolí y ermita de San Martín</div>
+        <div class="tl-desc">Subiremos desde Getaria entre viñedos de txakolí y caseríos hasta la iglesia de San Martín de Tours, en el barrio de Askizu. Paisaje precioso de campo vasco con el mar de fondo.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">12:30</div>
+        <div class="tl-title">Llegada a Zumaia</div>
+        <div class="tl-desc">Descenderemos hasta Zumaia, donde cruzaremos el río Urola. Pasaremos junto al museo Zuloaga y la ermita de Santiago. Pueblo con mucho encanto.</div>
+        <div class="tl-tip">🍽️ Pararemos aquí a comer los bocadillos que traigan de casa. Hay fuentes y aseos públicos.</div>
+      </div>
+
+      <div class="tl-item highlight">
+        <div class="tl-dot"></div>
+        <div class="tl-time">13:30</div>
+        <div class="tl-title">Zumaia → Deba: la costa de flysch</div>
+        <div class="tl-desc">El tramo más espectacular de la etapa. Subiremos hacia los acantilados y caminaremos por senderos con vistas a las formaciones de flysch (capas de roca de millones de años inclinadas sobre el mar). Pasaremos por la ermita de Santa Katalina, una atalaya con vistas a toda la costa.</div>
+      </div>
+
+      <div class="tl-item highlight">
+        <div class="tl-dot"></div>
+        <div class="tl-time">15:30 – 16:00</div>
+        <div class="tl-title">Llegada a Deba 🎉</div>
+        <div class="tl-desc">¡Meta! Bajaremos hasta Deba por un descenso vertiginoso hasta la playa de Santiago. Tiempo libre para bañarnos y descansar en la playa.</div>
+      </div>
+
+      <div class="tl-item green">
+        <div class="tl-dot"></div>
+        <div class="tl-time">16:15 – 16:45</div>
+        <div class="tl-title">Oración ante el Santísimo ✝️</div>
+        <div class="tl-desc">Haremos un rato de oración y adoración ante el Santísimo en una iglesia de Deba antes de coger el tren de vuelta.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">17:00</div>
+        <div class="tl-title">Euskotren de vuelta a Donostia</div>
+        <div class="tl-desc">Cogeremos el tren en la estación de Deba, línea E1 dirección Amara-Donostia. Sale cada hora los fines de semana. Trayecto de aproximadamente 1 hora. Billete aprox. 3-4€.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">18:00</div>
+        <div class="tl-title">De vuelta en San Sebastián</div>
+        <div class="tl-desc">Llegaremos a la estación de Amara y daremos un paseo por la Parte Vieja y la Playa de la Concha antes de ir a Txindoki.</div>
+      </div>
+
+      <div class="tl-item highlight">
+        <div class="tl-dot"></div>
+        <div class="tl-time">19:30</div>
+        <div class="tl-title">Barbacoa y fútbol en Txindoki 🔥⚽</div>
+        <div class="tl-desc">Cenaremos una barbacoa con los chavales de Txindoki y jugaremos un partido de fútbol con ellos. ¡Buen plan para cerrar el día!</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">🌙 Noche</div>
+        <div class="tl-title">Alojamiento en Txindoki</div>
+        <div class="tl-desc">Dormiremos en Txindoki, en Donostia.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COSAS QUE VER -->
+  <section>
+    <span class="section-tag">Highlights</span>
+    <h2>Lo mejor del camino</h2>
+
+    <div class="poi-grid">
+      <div class="poi-card town">
+        <div class="poi-emoji">🏖️</div>
+        <div class="poi-name">Playa de Zarautz</div>
+        <div class="poi-desc">La playa más larga de Euskadi (2,5 km). Capital del surf. Nuestro punto de partida.</div>
+      </div>
+      <div class="poi-card town">
+        <div class="poi-emoji">⛵</div>
+        <div class="poi-name">Getaria</div>
+        <div class="poi-desc">Pueblo marinero donde nació Juan Sebastián Elcano. Puerto pesquero, callejuelas y el famoso "ratón" (islote).</div>
+      </div>
+      <div class="poi-card nature">
+        <div class="poi-emoji">🍷</div>
+        <div class="poi-name">Viñedos de txakolí</div>
+        <div class="poi-desc">Caminaremos entre las parras del txakolí de Getaria, el vino blanco típico de la zona, con el mar de fondo.</div>
+      </div>
+      <div class="poi-card">
+        <div class="poi-emoji">⛪</div>
+        <div class="poi-name">San Martín de Tours</div>
+        <div class="poi-desc">Iglesia histórica en el barrio de Askizu. Pasaremos justo al lado entre caseríos y ovejas.</div>
+      </div>
+      <div class="poi-card town">
+        <div class="poi-emoji">🎨</div>
+        <div class="poi-name">Zumaia</div>
+        <div class="poi-desc">Villa costera con el museo Zuloaga y la ermita de Santiago. Cruzaremos el río Urola por un puente peatonal.</div>
+      </div>
+      <div class="poi-card nature">
+        <div class="poi-emoji">🪨</div>
+        <div class="poi-name">Flysch de la costa</div>
+        <div class="poi-desc">Acantilados con capas de roca de 60 millones de años. Un espectáculo geológico único en Europa.</div>
+      </div>
+      <div class="poi-card nature">
+        <div class="poi-emoji">⛰️</div>
+        <div class="poi-name">Ermita de Santa Katalina</div>
+        <div class="poi-desc">Atalaya sobre los acantilados con vistas a toda la costa. El punto más impresionante de la ruta.</div>
+      </div>
+      <div class="poi-card">
+        <div class="poi-emoji">🏊</div>
+        <div class="poi-name">Playa de Deba</div>
+        <div class="poi-desc">Nuestra meta. La playa de Santiago nos recibirá para el baño merecido después de la caminata.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOMINGO -->
+  <section>
+    <div class="day2-header">
+      <span class="section-tag" style="color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.15);">Domingo</span>
+      <h2>Misa y vuelta a Pamplona</h2>
+      <p>Mañana tranquila en Donostia antes de volver a Pamplona.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">09:00</div>
+        <div class="tl-title">Desayuno</div>
+        <div class="tl-desc">Desayunaremos en Txindoki o en alguna cafetería del centro.</div>
+      </div>
+      <div class="tl-item highlight">
+        <div class="tl-dot"></div>
+        <div class="tl-time">10:00 – 11:00</div>
+        <div class="tl-title">Santa Misa</div>
+        <div class="tl-desc">Iremos a Misa. Opciones: Basílica de Santa María del Coro (Parte Vieja, muy bonita), Catedral del Buen Pastor (centro, la más grande), o iglesia de San Vicente (la más antigua de Donostia).</div>
+      </div>
+      <div class="tl-item green">
+        <div class="tl-dot"></div>
+        <div class="tl-time">11:30</div>
+        <div class="tl-title">Paseo final por Donostia</div>
+        <div class="tl-desc">Si nos da tiempo, subiremos al Monte Urgull (gratis, vistas geniales), pasearemos por el Boulevard o daremos una vuelta por La Concha.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">13:00</div>
+        <div class="tl-title">Recoger coche y vuelta a Pamplona</div>
+        <div class="tl-desc">Volveremos en Euskotren hasta Zarautz para recoger el coche y de vuelta por la AP-8 y A-15. Llegada a Pamplona sobre las 15:00.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARKING -->
+  <section>
+    <span class="section-tag">Info práctica</span>
+    <h2>Parking en Zarautz</h2>
+    <div class="info-box">
+      <h3>🅿️ Aparcar en Zarautz</h3>
+      <ul>
+        <li>Los fines de semana suele haber sitio en las calles cercanas a la playa y la estación</li>
+        <li>Zona OTA gratuita en fines de semana en la mayoría de calles</li>
+        <li>El coche se quedará aquí hasta el domingo — lo recogeremos a la vuelta en Euskotren</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EUSKOTREN -->
+  <section>
+    <span class="section-tag">Transporte</span>
+    <h2>Euskotren Deba → Donostia</h2>
+    <div class="info-box">
+      <h3>🚆 Línea E1</h3>
+      <ul>
+        <li>Estación de Deba → Estación de Amara (Donostia)</li>
+        <li>Frecuencia fines de semana: cada hora aprox.</li>
+        <li>Duración del trayecto: ~1 hora</li>
+        <li>Precio: 3-4 € por billete</li>
+        <li>Consultar horarios exactos en <strong>euskotren.eus</strong></li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <h3>🚆 Domingo: Euskotren Donostia → Zarautz</h3>
+      <ul>
+        <li>Estación de Amara (Donostia) → Estación de Zarautz</li>
+        <li>Duración: ~30 minutos</li>
+        <li>Para recoger el coche y volver a Pamplona</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- COSTE -->
+  <section>
+    <span class="section-tag">Coste</span>
+    <h2>Precio de la actividad</h2>
+    <div style="background: white; border-radius: 14px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 1.25rem;">
+      <div style="background: linear-gradient(135deg, var(--cliff), var(--sea-dark)); color: white; border-radius: 12px; padding: 0.75rem 1.25rem; text-align: center; min-width: 80px;">
+        <div style="font-family: 'DM Serif Display', serif; font-size: 2rem; line-height: 1;">10€</div>
+        <div style="font-size: 0.7rem; opacity: 0.85; margin-top: 0.15rem;">por persona</div>
+      </div>
+      <div>
+        <div style="font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem;">¿Qué cubre?</div>
+        <div style="font-size: 0.85rem; color: var(--stone); line-height: 1.55;">Gasolina del viaje (Pamplona ↔ Zarautz) y cena del sábado (barbacoa en Txindoki). La comida del sábado la trae cada uno de casa.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section>
+    <span class="section-tag">Preparación</span>
+    <h2>Mochila para la ruta</h2>
+    <p style="font-size: 0.88rem; color: var(--stone); margin-bottom: 1rem;">Lo que cada uno debe llevar en la mochila:</p>
+    <ul class="checklist">
+      <li>Zapatillas de trekking cómodas</li>
+      <li>Chubasquero / cortavientos</li>
+      <li>Gorra y crema solar</li>
+      <li>Botella de agua (1,5L mín.)</li>
+      <li>Comida para el sábado (bocadillos, frutos secos, fruta, etc.)</li>
+      <li>Bañador y toalla pequeña</li>
+      <li>Muda de ropa para la noche</li>
+      <li>Zapatillas de fútbol sala</li>
+      <li>Botas de fútbol 7 (por si acaso)</li>
+      <li>Tarjeta sanitaria (por si acaso)</li>
+      <li>Algo de dinero (tren + por si acaso)</li>
+    </ul>
+
+    <div style="margin-top: 1.25rem; background: linear-gradient(135deg, #c0392b, #e74c3c); color: white; border-radius: 12px; padding: 1.1rem 1.25rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+      <span style="font-size: 1.8rem; line-height: 1;">📵</span>
+      <div>
+        <div style="font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem;">No traer teléfono móvil</div>
+        <div style="font-size: 0.85rem; opacity: 0.95; line-height: 1.5;">Pedimos que los chavales <strong>no traigan móvil</strong> a la excursión. Queremos que disfruten del camino, la naturaleza y la convivencia sin pantallas. Los monitores llevarán teléfono para cualquier emergencia.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPS -->
+  <section>
+    <span class="section-tag">Consejos</span>
+    <h2>Para que estéis tranquilos</h2>
+    <div class="info-box">
+      <h3>📋 Notas para los padres</h3>
+      <ul>
+        <li>La ruta es el Camino de Santiago del Norte, está bien señalizada con flechas amarillas</li>
+        <li>No hay tramos peligrosos; la etapa tiene bastante subida y bajada pero los senderos son amplios y seguros</li>
+        <li>Si alguno se cansa mucho, en Zumaia hay parada de Euskotren (línea E1) para volver directamente a Donostia</li>
+        <li>En Zumaia hay fuentes y aseos públicos para la parada de comida</li>
+        <li>Los monitores llevarán teléfono móvil en todo momento para cualquier emergencia</li>
+        <li>Dormiremos en Txindoki, en San Sebastián</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Excursión 4º ESO · Pamplona → Zarautz → Deba · Septiembre 2026<br>
+  Consulta <strong>euskotren.eus</strong> y <strong>aemet.es</strong> para info actualizada antes de salir.
+</footer>
+
+</body>
+</html>
