@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Excursión 4º ESO: Zarautz → Deba">
 <meta property="og:description" content="🥾 22 km por la costa vasca · Getaria, Zumaia, flysch y Deba · Sábado y domingo · 10€/persona">
-<meta property="og:image" content="https://peginatta.github.io/excursion-zarautz-deba/og-image.png">
+<meta property="og:image" content="https://peginatta.github.io/excursion-zarautz-deba/og-photo.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://peginatta.github.io/excursion-zarautz-deba/">
@@ -19,7 +19,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Excursión 4º ESO: Zarautz → Deba">
 <meta name="twitter:description" content="🥾 22 km por la costa vasca · Getaria, Zumaia, flysch y Deba · Sábado y domingo · 10€/persona">
-<meta name="twitter:image" content="https://peginatta.github.io/excursion-zarautz-deba/og-image.png">
+<meta name="twitter:image" content="https://peginatta.github.io/excursion-zarautz-deba/og-photo.jpg">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -332,6 +332,35 @@
     body { font-size: 11pt; }
     .poi-card:hover { transform: none; }
   }
+
+  /* Bitácora */
+  .bitacora-entry {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 1.25rem;
+  }
+  .bitacora-entry img {
+    width: 100%;
+    display: block;
+    max-height: 400px;
+    object-fit: cover;
+  }
+  .bitacora-caption {
+    padding: 1rem 1.25rem;
+  }
+  .bitacora-time {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--sea);
+    margin-bottom: 0.25rem;
+  }
+  .bitacora-text {
+    font-size: 0.9rem;
+    color: var(--stone);
+    line-height: 1.55;
+  }
 </style>
 </head>
 <body>
@@ -353,6 +382,22 @@
 </div>
 
 <div class="container">
+
+  <!-- BITÁCORA -->
+  <section>
+    <span class="section-tag">Bitácora</span>
+    <h2>Diario de la excursión 📸</h2>
+    <p style="font-size:0.88rem; color:var(--stone); margin-bottom:1.25rem;">Fotos del camino, en orden cronológico. ¡Iremos actualizando!</p>
+
+    <div class="bitacora-entry">
+      <img src="fotos/01-grupo.jpg" alt="El grupo antes de salir">
+      <div class="bitacora-caption">
+        <div class="bitacora-time">📍 Antes de salir</div>
+        <div class="bitacora-text">El grupo al completo, listos para la aventura. ¡Vamos allá!</div>
+      </div>
+    </div>
+
+  </section>
 
   <!-- DATOS RUTA -->
   <section>
